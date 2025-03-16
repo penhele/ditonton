@@ -2,22 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/constants.dart';
-import '../../common/utils.dart';
-import '../../presentation/pages/about_page.dart';
-import '../../presentation/pages/movie_detail_page.dart';
-import '../../presentation/pages/home_movie_page.dart';
-import '../../presentation/pages/popular_movies_page.dart';
-import '../../presentation/pages/search_page.dart';
-import '../../presentation/pages/top_rated_movies_page.dart';
-import '../../presentation/pages/watchlist_movies_page.dart';
-import '../../presentation/provider/movie_detail_notifier.dart';
-import '../../presentation/provider/movie_list_notifier.dart';
-import '../../presentation/provider/movie_search_notifier.dart';
-import '../../presentation/provider/popular_movies_notifier.dart';
-import '../../presentation/provider/top_rated_movies_notifier.dart';
-import '../../presentation/provider/watchlist_movie_notifier.dart';
-import '../../injection.dart' as di;
+import '../presentation/widgets/custom_drawer.dart';
+import '../common/constants.dart';
+import '../common/utils.dart';
+import '../presentation/pages/about_page.dart';
+import '../presentation/pages/movie_detail_page.dart';
+import '../presentation/pages/home_movie_page.dart';
+import '../presentation/pages/popular_movies_page.dart';
+import '../presentation/pages/search_page.dart';
+import '../presentation/pages/top_rated_movies_page.dart';
+import '../presentation/pages/watchlist_movies_page.dart';
+import '../presentation/provider/movie_detail_notifier.dart';
+import '../presentation/provider/movie_list_notifier.dart';
+import '../presentation/provider/movie_search_notifier.dart';
+import '../presentation/provider/popular_movies_notifier.dart';
+import '../presentation/provider/top_rated_movies_notifier.dart';
+import '../presentation/provider/watchlist_movie_notifier.dart';
+import '../injection.dart' as di;
 
 void main() {
   di.init();
@@ -55,7 +56,11 @@ class MyApp extends StatelessWidget {
           textTheme: kTextTheme,
           drawerTheme: kDrawerTheme,
         ),
-        home: HomeMoviePage(),
+        home: Material(
+          child: CustomDrawer(
+            content: HomeMoviePage()
+          )
+        ),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
